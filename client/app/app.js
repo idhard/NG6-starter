@@ -1,12 +1,18 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
+import 'restangular';
 import Common from './common/common';
 import Components from './components/components';
 import AppComponent from './app.component';
 import 'normalize.css';
+import 'bootstrap-loader';
+import uiBootstrap from 'angular-ui-bootstrap';
+
 
 angular.module('app', [
     uiRouter,
+    'restangular',
+    uiBootstrap,
     Common.name,
     Components.name
   ])

@@ -1,4 +1,11 @@
 <section class="hero">
   <h1>This is the NG6 starter</h1>
   <h3>You can find me inside {{ vm.name }}.html</h3>
+  <button type="button" class="btn btn-default" ng-click="vm.openModal()">Open me!</button>
+  <ul>
+    <li ng-repeat="product in vm.products">
+        <span>{{product.body}}</span>
+    </li>
+  </ul>
+
 </section>

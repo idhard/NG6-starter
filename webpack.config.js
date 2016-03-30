@@ -1,6 +1,7 @@
-var path    = require('path');
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+import path from 'path';
+import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import _ from 'lodash';
 
 module.exports = {
   devtool: 'sourcemap',
@@ -8,8 +9,13 @@ module.exports = {
   module: {
     loaders: [
        { test: /\.js$/, exclude: [/app\/lib/, /node_modules/], loader: 'ng-annotate!babel' },
+       { test: /\.(png)$/, loader: 'url-loader?limit=100000' },
+      { test: /\.woff(2)?(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/font-woff" },
+      { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream" },
+      { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file" },
+      { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml" },
        { test: /\.html$/, loader: 'raw' },
-       { test: /\.styl$/, loader: 'style!css!stylus' },
+       { test: /\.scss$/, loader: 'style!css?sourceMap!sass?sourceMap' },
        { test: /\.css$/, loader: 'style!css' }
     ]
   },
@@ -21,6 +27,14 @@ module.exports = {
       template: 'client/index.html',
       inject: 'body',
       hash: true
+    }),
+
+    new webpack.ProvidePlugin({
+        _: 'lodash',
+        $: 'jquery',
+        jQuery: 'jquery',
+        'window.jQuery': 'jquery',
+        'window.$': 'jquery'
     }),
 
     // Automatically move all modules defined outside of application directory to vendor bundle.
