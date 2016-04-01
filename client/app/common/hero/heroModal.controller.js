@@ -8,7 +8,6 @@ class HeroModalController {
   }
 
   ok(){
-    console.log('called ok');
     this.$uibModalInstance.close();
   }
 

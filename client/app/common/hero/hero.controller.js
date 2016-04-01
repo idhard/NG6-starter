@@ -1,7 +1,7 @@
 import modalTemplate from './heroModal.html';
 
 class HeroController {
-  constructor(Restangular, $uibModal) {
+  constructor(Restangular, $uibModal, CNDUser, CNDProduct) {
     this.Restangular = Restangular;
     this.$uibModal = $uibModal;
 
@@ -19,6 +19,7 @@ class HeroController {
       data => {
         this.products = data.plain().slice(0, 10);
       });
+
   }
 
   openModal() {
@@ -30,7 +31,6 @@ class HeroController {
       //size: size,
       resolve: {
         items: () => {
-          console.log(this.items);
           return this.items;
         }
       }
@@ -40,7 +40,7 @@ class HeroController {
 
 }
 
-HeroController.$inject = ['Restangular', '$uibModal'];
+HeroController.$inject = ['Restangular', '$uibModal', 'CNDUser', 'CNDProduct'];
 
 
 export default HeroController;

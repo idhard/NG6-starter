@@ -7,6 +7,7 @@ import AppComponent from './app.component';
 import 'normalize.css';
 import 'bootstrap-loader';
 import uiBootstrap from 'angular-ui-bootstrap';
+import services from './services/services';
 
 
 angular.module('app', [
@@ -14,7 +15,8 @@ angular.module('app', [
     'restangular',
     uiBootstrap,
     Common.name,
-    Components.name
+    Components.name,
+    services.name
   ])
   .config(($locationProvider) => {
     "ngInject";
